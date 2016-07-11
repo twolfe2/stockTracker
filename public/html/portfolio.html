@@ -1,0 +1,42 @@
+<div class="container">
+    <h1>Portfolio</h1>
+    <div class="text-center" ng-if='!stocks'>
+        <h4>There are no stocks in your Portfolio</h4>
+        <button class="btn btn-primary" ui-sref='stockSearch'>Add Stocks</button>
+    </div>
+    <div ng-if='stocks'>
+        <div class="text-right">
+        <button class="btn btn-success" ng-click='reloadStocks()'>Reload</button>
+        </div>
+        <table class="table">
+            <thead>
+                <th>Symbol</th>
+                <th>Last Price</th>
+                <th>Low</th>
+                <th>High</th>
+                <th>Change</th>
+                <th>Change YTD</th>
+                <th>Open</th>
+                <th>Remove</th>
+            </thead>
+            <tbody>
+                <tr ng-repeat='quote in stocks'>
+                    <td>{{quote.Symbol}}</td>
+                    <td>{{quote.LastPrice}}</td>
+                    <td>{{quote.Low}}</td>
+                    <td>{{quote.High}}</td>
+                    <td ng-class='{"btn-success":quote.ChangePercent >= 0, "btn-danger":quote.ChangePercent < 0 }'>
+                        {{quote.ChangePercent | number : 2}}%
+                    </td>
+                    <td ng-class='{"btn-success":quote.ChangePercentYTD >= 0, "btn-danger":quote.ChangePercentYTD < 0 }'>
+                        {{quote.ChangePercentYTD | number : 2}}%
+                    </td>
+                    <td>{{quote.Open}}</td>
+                    <td>
+                        <div class="button btn btn-danger btn-xs" ng-click='removeStock(quote.Symbol)'>X</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
