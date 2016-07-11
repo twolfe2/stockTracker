@@ -1,12 +1,12 @@
 <div class="container">
     <h1>Portfolio</h1>
-    <div class="text-center" ng-if='!stocks'>
+    <div class="text-center" ng-if='stocks.length === 0'>
         <h4>There are no stocks in your Portfolio</h4>
         <button class="btn btn-primary" ui-sref='stockSearch'>Add Stocks</button>
     </div>
-    <div ng-if='stocks'>
+    <div ng-if='stocks.length > 0'>
         <div class="text-right">
-        <button class="btn btn-success" ng-click='reloadStocks()'>Reload</button>
+        <button class="btn btn-success" ng-click='reloadStocks()'> <span ng-class='{"fa fa-refresh fa-spin fa-fw": isLoading}'></span><span ng-if='!isLoading'>Reload</span></button>
         </div>
         <table class="table">
             <thead>

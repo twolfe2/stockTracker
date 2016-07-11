@@ -96,7 +96,7 @@ router.delete('/removeStock/:sym', User.authorize({admin: false}), (req,res) => 
   // res.send();
   User.findByIdAndUpdate(req.user._id, {$pull: {stocks: req.params.sym}},(err, updatedUser) => {
    if(err) return res.status(400).send(err);
-   res.send(updatedUser);
+   res.send(updatedUser.stocks);
   });
 });
 

@@ -5,7 +5,7 @@
               <label>Symbol</label>
               <input type="text" class="form-control" placeholder="Enter Stock Symbol" ng-model="symbol">
             </div>
-            <button class="btn btn-primary btn-block">Search</button>
+            <button class="btn btn-primary btn-block"><span ng-class='{"fa fa-refresh fa-spin fa-fw": isLoading}'></span><span ng-if='!isLoading'>Search</span></button>
         </form>
     </div>
     <div ng-if='quote'>
